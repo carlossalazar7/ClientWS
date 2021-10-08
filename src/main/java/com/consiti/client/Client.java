@@ -16,8 +16,6 @@ import java.net.*;
 public class Client {
 
     public static void main(String[] args) throws Exception {
-        String archivo = "consulta.xml";
-        String respuesta = "response.xml";
         sendSoapRequest(args[0], args[1]);
     }
 
@@ -30,8 +28,6 @@ public class Client {
         String routeOutComplete = routeOut + responseFileName;
 
         String SOAPUrl = ReadProperties.getProperty("ws.url");
-        //String xmlFile2Send = "F:/proyecto/FICOHSA/consulta.xml";
-        //String responseFileName = "F:/proyecto/FICOHSA/response.xml";
         String SOAPAction = "";
 
         // Create the connection where we're going to send the file.
