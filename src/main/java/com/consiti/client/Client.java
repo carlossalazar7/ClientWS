@@ -11,7 +11,7 @@ import java.net.*;
 
 /**
  *
- * @author carlo
+ * @author carlos Peñate, info: carlossalazar2228@gmail.com
  */
 public class Client {
 
