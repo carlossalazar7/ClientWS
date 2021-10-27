@@ -23,7 +23,7 @@ public class ReadProperties {
                 String fileName = (new File(ReadProperties.class.getProtectionDomain().getCodeSource().getLocation().toURI())).getParent();
                 fileName = fileName + File.separator + "application.properties";
                 File file = new File(fileName);
-                System.out.println(fileName);
+                //System.out.println(fileName);
                 if (file.exists()) {
                     prop.load(new FileReader(file));
                 } else {

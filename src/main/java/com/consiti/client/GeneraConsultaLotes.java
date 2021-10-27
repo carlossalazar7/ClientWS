@@ -3,6 +3,11 @@ package com.consiti.client;
 
 import com.consiti.utils.ReadProperties;
 import org.w3c.dom.*;
+
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 import javax.xml.parsers.*;
 import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
@@ -53,7 +58,7 @@ public class GeneraConsultaLotes {
             rootElement.appendChild(header);
 
             //RequestHeader elements
-            Element requestHeader = doc.createElement("RequestHeader");
+            Element requestHeader = doc.createElement(ReadProperties.getProperty("aut.requestHeader"));
             header.appendChild(requestHeader);
 
             //Authentication elements
@@ -89,7 +94,7 @@ public class GeneraConsultaLotes {
             rootElement.appendChild(body);
 
             //consultaLotesCliente elements
-            Element consultaLotesCliente = doc.createElement("pag:consultaLotesCliente");
+            Element consultaLotesCliente = doc.createElement(ReadProperties.getProperty("pag.consultaLoteCliene"));
             body.appendChild(consultaLotesCliente);
 
             //CUSTOMER_ID elements

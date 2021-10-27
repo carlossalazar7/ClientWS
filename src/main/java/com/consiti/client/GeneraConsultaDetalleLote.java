@@ -13,11 +13,11 @@ public class GeneraConsultaDetalleLote {
 
     public static void main(String[] args) {
         System.out.println("construyendo archivos");
-        CreateXMLFile(args[0],args[1],args[2],args[3],args[4], args[5],args[6],args[7]);
+        CreateXMLFile(args[0],args[1],args[2],args[3],args[4], args[5]);
     }
 
     public static void CreateXMLFile(String userName, String password, String sourceBank, String destinationBank,
-                                     String customerId, String beginDate, String endDate, String XMLFileName){
+                                     String customerId,  String XMLFileName){
         try {
             File file = new File(ReadProperties.getProperty("dir.response")+XMLFileName);
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -31,7 +31,7 @@ public class GeneraConsultaDetalleLote {
                     if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                         Element e = (Element) nNode;
                         WriteXML(userName,password,sourceBank, destinationBank, customerId,
-                                e.getElementsByTagName("CUSTOMER_BATCH_ID").item(0).getTextContent(),
+                                e.getElementsByTagName("CUSTOMER_BATCH_ID").item(0).getNodeName(),
                                 e.getElementsByTagName("CUSTOMER_BATCH_ID").item(0).getTextContent());
                     }
                 }
@@ -48,7 +48,7 @@ public class GeneraConsultaDetalleLote {
 
             //structure name
             String routeOut = ReadProperties.getProperty("dir.request");
-            String name = "ConsultaDetalleLote["+queryType+"].xml";
+            String name = "ConsultaDetalleLote["+queryValue+"].xml";
 
             DocumentBuilderFactory Factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = Factory.newDocumentBuilder();
@@ -68,7 +68,7 @@ public class GeneraConsultaDetalleLote {
             rootElement.appendChild(header);
 
             //RequestHeader elements
-            Element requestHeader = document.createElement("RequestHeader");
+            Element requestHeader = document.createElement("aut:RequestHeader");
             header.appendChild(requestHeader);
 
             //Authentication elements
