@@ -13,26 +13,34 @@ public class GeneraConsultaDetalleLote {
 
     public static void main(String[] args) {
         System.out.println("construyendo archivos");
-        CreateXMLFile(args[0],args[1],args[2],args[3],args[4], args[5]);
+        CreateXMLFile(args[0],args[1],args[2],args[3],args[4]);
     }
 
     public static void CreateXMLFile(String userName, String password, String sourceBank, String destinationBank,
-                                     String customerId,  String XMLFileName){
+                                     String XMLFileName){
         try {
+            System.out.println("Reading file: "+XMLFileName);
             File file = new File(ReadProperties.getProperty("dir.response")+XMLFileName);
+
+
+            String[] newCustomerId = XMLFileName.split("-");
+
+
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             DocumentBuilder db = dbf.newDocumentBuilder();
             Document document = db.parse(file);
             document.getDocumentElement().normalize();
             NodeList nList = document.getElementsByTagName("BATCH");
             System.out.println("----------------------------");
+            System.out.println("array: "+newCustomerId.toString());
                 for (int temp = 0; temp < nList.getLength(); temp++) {
                     Node nNode = nList.item(temp);
                     if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                         Element e = (Element) nNode;
-                        WriteXML(userName,password,sourceBank, destinationBank, customerId,
-                                e.getElementsByTagName("CUSTOMER_BATCH_ID").item(0).getNodeName(),
-                                e.getElementsByTagName("CUSTOMER_BATCH_ID").item(0).getTextContent());
+                        WriteXML(userName,password,sourceBank, destinationBank, newCustomerId[1],
+                                e.getElementsByTagName("BANK_BATCH_ID").item(0).getNodeName(),
+                                e.getElementsByTagName("BANK_BATCH_ID").item(0).getTextContent());
+                                //e.getElementsByTagName("0").item(0).getTextContent());
                     }
                 }
         }
@@ -45,6 +53,8 @@ public class GeneraConsultaDetalleLote {
                                 String XMLDestinationBank, String customerId, String queryType,String queryValue){
         try{
             System.out.println("Creating...");
+
+            System.out.println("customerID: "+customerId);
 
             //structure name
             String routeOut = ReadProperties.getProperty("dir.request");

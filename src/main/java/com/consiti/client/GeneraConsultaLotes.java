@@ -37,7 +37,7 @@ public class GeneraConsultaLotes {
 
             //structure name
             String routeOut = ReadProperties.getProperty("dir.request");
-            String name = "ConsultaLotesCliente["+date+"].xml";
+            String name = "ConsultaLotesCliente-"+XMLCustomerId+"-"+date+".xml";
             String request = routeOut+name;
 
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();

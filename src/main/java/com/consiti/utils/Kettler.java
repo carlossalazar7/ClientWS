@@ -1,29 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.consiti.utils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.Properties;
 
-public class ReadProperties {
-
+public class Kettler {
     private static Properties prop = null;
 
-    private static Properties getProperties() {
+    public static void loadProperties(String rutaPropertie) {
         if (prop == null) {
             prop = new Properties();
             try {
-                String fileName = (new File(ReadProperties.class.getProtectionDomain().getCodeSource().getLocation().toURI())).getParent();
-                fileName = fileName + File.separator + "application.properties";
-                File file = new File(fileName);
-                System.out.println(fileName);
+                File file = new File(rutaPropertie);
                 if (file.exists()) {
                     prop.load(new FileReader(file));
                 } else {
@@ -31,13 +21,14 @@ public class ReadProperties {
                     prop.load(classloader.getResourceAsStream("application.properties"));
                 }
             } catch (FileNotFoundException e) {
-                System.out.println("File Not Found:" + e.getMessage());
+                e.printStackTrace();
             } catch (IOException e) {
-                System.out.println("IO Exception: " + e.getMessage());
-            } catch (URISyntaxException e) {
-                System.out.println("URI Exception:" + e.getMessage());
+                e.printStackTrace();
             }
         }
+    }
+
+    private static Properties getProperties() {
         return prop;
     }
 

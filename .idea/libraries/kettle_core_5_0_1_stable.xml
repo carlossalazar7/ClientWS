@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="kettle-core-5.0.1-stable">
+    <CLASSES>
+      <root url="jar://F:/proyecto/FICOHSA/lib/kettle-core-5.0.1-stable.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
